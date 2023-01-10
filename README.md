@@ -3,7 +3,7 @@ etapa2 proiect POO
 
 321CD- Ionescu Stefan
 
-								README ETAPA II
+							README ETAPA II
 
 
 Descrierea claselor auxiliare :
