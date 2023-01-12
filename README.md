@@ -102,6 +102,10 @@ No Recommendation. Notification este dupa for-ul de comenzi, deci la sfarsitul c
 afisez aceste lucruri, dar cu conditia ca si contul ultimului utilizator sa fie de tipul
 premium. 
 
+Tind sa mentionez faptul ca in unele clase am mai lasat warning-uri doar pentru ca
+daca le modificau imi stricau checkstyle si pe de alta parte aveam nevoie de niste
+variabile necesare pentru input. Si mi se sugera sa le sterg.
+
 
 
 
