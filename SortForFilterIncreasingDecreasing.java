@@ -31,9 +31,9 @@ public class SortForFilterIncreasingDecreasing implements SortingForFilterIncrea
         }
     }
 
-    /** this method prints that the arraylist has been sorted the correspondent way */
+    /** this method is called when the arraylist has been sorted the correspondent way */
     @Override
     public void sortFilterIncreasingDecreasing() {
-        System.out.println("sortedIncreasingDecreasing");
+        System.out.print("");
     }
 }
