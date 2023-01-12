@@ -20,6 +20,7 @@ public class Inputforusers {
     private ArrayList<InputforMovies> likedmovies;
     private int numlogins;
 
+    /** method used for Singleton design-pattern */
     public static Inputforusers getInstance() {
         if (curruser == null) {
             curruser = new Inputforusers();
@@ -111,24 +112,14 @@ public class Inputforusers {
     /** like putinwatchedmovies, putinratedmovies,
      * these arraylist remembers all the movies that a user has either purchased,
      * watched or rated. */
-    private ArrayList<InputforMovies> putinpurchasedmovies = new ArrayList<>();
-
-    /** this method sets the putinpurchasedmovies arraylist */
-    public void setPutinpurchasedmovies(final ArrayList<InputforMovies> putinpurchasedmovies) {
-        this.putinpurchasedmovies = putinpurchasedmovies;
-    }
-
-    /** this method sets the putinwatchedmovies arraylist */
-    public void setPutinwatchedmovies(final ArrayList<InputforMovies> putinwatchedmovies) {
-        this.putinwatchedmovies = putinwatchedmovies;
-    }
+    private final ArrayList<InputforMovies> putinpurchasedmovies = new ArrayList<>();
 
     /** this method stores purchasedmovies of a user, in an arraylist */
     public void putinpurchasedmovies(final InputforMovies movie) {
         putinpurchasedmovies.add(movie);
     }
 
-    private ArrayList<InputforMovies> putinwatchedmovies = new ArrayList<>();
+    private final ArrayList<InputforMovies> putinwatchedmovies = new ArrayList<>();
 
 
     /** this method stores watchedmovies of a user, in an arraylist */
@@ -136,12 +127,7 @@ public class Inputforusers {
         putinwatchedmovies.add(movie);
     }
 
-    private ArrayList<InputforMovies> putinratedmovies = new ArrayList<>();
-
-    /** this method sets the putinpurchasedmovies. */
-    public void setPutinratedmovies(final ArrayList<InputforMovies> putinratedmovies) {
-        this.putinratedmovies = putinratedmovies;
-    }
+    private final ArrayList<InputforMovies> putinratedmovies = new ArrayList<>();
 
     /** this method stores rateedmovies of a user, in an arraylist */
     public void putinratedmovies(final InputforMovies movie) {
@@ -166,16 +152,6 @@ public class Inputforusers {
     /** this is an arraylist containing all the genres that the user has subscribed to */
     private ArrayList<String> usergenres;
 
-    /** thsi method gets the usergenres arraylist */
-    public ArrayList<String> getUsergenres() {
-        return usergenres;
-    }
-
-    /** this method sets the usergenres arraylist with an arraylist */
-    public void setUsergenres(final ArrayList<String> usergenres) {
-        this.usergenres = usergenres;
-    }
-
     /** this method is used to put a genre that a user has subscribed to, one at a time */
     public void genresforuser(final String genre) {
         if (usergenres != null) {
@@ -183,10 +159,8 @@ public class Inputforusers {
         }
     }
 
-    /** this method returns the arraylist conatining the subscribed genres of the user */
-    public ArrayList<String> getgenresforuser() {
-        return  usergenres;
+
+    public void setUsergenres(ArrayList<String> usergenres) {
+        this.usergenres = usergenres;
     }
-
-
 }
