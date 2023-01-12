@@ -47,7 +47,7 @@ public class Main {
         SortingForfilterDecreasingDecreasing sortDecreasingDecreasing;
         SortForFilterDecreasingIncreasing sortDecreasingIncreasing;
         Legal legal = new Legal();
-        ArrayList<InputforMovies> currentmovieslist = new ArrayList<>();
+        //ArrayList<InputforMovies> currentmovieslist = new ArrayList<>();
         ArrayList<InputforMovies> database = new ArrayList<>();
         ArrayList<InputforMovies> liked = new ArrayList<>();
         ArrayList<InputforMovies> purchased = new ArrayList<>();
@@ -57,9 +57,6 @@ public class Main {
         ArrayList<InputforMovies> allwatched = new ArrayList<>();
         ArrayList<InputforMovies> allrated = new ArrayList<>();
         ArrayList<InputforMovies> remainingmovies = new ArrayList<>();
-        ArrayList<InputforMovies> purchaseduser;
-        ArrayList<InputforMovies> watcheduser;
-        ArrayList<InputforMovies> rateduser;
         ArrayList<String> genresforuser = new ArrayList<>();
         ArrayNode notifications = objectMapper.createArrayNode();
         GoingThroughLikedMovies goingThroughLikedMovies = new GoingThroughLikedMovies();
@@ -67,7 +64,7 @@ public class Main {
         GoingThroughPurchasedMovies goingThroughPurchasedMovies = new GoingThroughPurchasedMovies();
         GoingThroughRatedmovies goingThroughRatedmovies = new GoingThroughRatedmovies();
         double oldrate = 0;
-        int numlogins = 0;
+        int numlogins;
         int numlikes = 0;
         boolean trueorfalse = false;
         int i;
@@ -85,13 +82,6 @@ public class Main {
                                 database.add(movietoadd);
                                 movies.add(movietoadd);
                             }
-                        }
-                    }
-                } else if (actions.get(i).getFeature().equals("delete")) {
-                    String deletemovie = actions.get(i).getDeletedMovie();
-                    for (int k = 0; k < movies.size(); k++) {
-                        if (movies.get(k).getName().equals(deletemovie)) {
-                            movies.remove(k);
                         }
                     }
                 }
@@ -142,7 +132,6 @@ public class Main {
                             ArrayNode currentMoviesList = objectMapper.createArrayNode();
                             if (legalmovies.size() != 0) {
                                 all.set("error", null);
-                                ArrayNode purchasedmovies = objectMapper.createArrayNode();
                                 for (InputforMovies legalmovie : legalmovies) {
 
                                     if (actions.get(i).getMovie() == null) {
@@ -189,7 +178,7 @@ public class Main {
                                             curruser.getNumFreeMovies());
                                 }
                                 ArrayNode c = objectMapper.createArrayNode();
-                                ArrayNode liked1 = objectMapper.createArrayNode();
+                                ArrayNode liked1;
                                 liked1 = goingThroughLikedMovies.GoThroughLikedMovies(
                                         liked);
                                 ArrayNode wat;
@@ -349,10 +338,9 @@ public class Main {
                             if (database.size() != 0) {
                                 ArrayNode notification = objectMapper.createArrayNode();
                                 ObjectNode message = objectMapper.createObjectNode();
-                                ObjectNode movieName = objectMapper.createObjectNode();
                                 message.put("message", "ADD");
-                                for (int l = 0; l < database.size(); l++) {
-                                    message.put("movieName", database.get(l).getName());
+                                for (InputforMovies inputforMovies : database) {
+                                    message.put("movieName", inputforMovies.getName());
                                 }
                                 notification.add(message);
                                 currentUser.set("notifications", notification);
@@ -406,8 +394,8 @@ public class Main {
                                 ArrayNode notification = objectMapper.createArrayNode();
                                 ObjectNode message = objectMapper.createObjectNode();
                                 message.put("message", "ADD");
-                                for (int l = 0; l < database.size(); l++) {
-                                    message.put("movieName", database.get(l).getName());
+                                for (InputforMovies inputforMovies : database) {
+                                    message.put("movieName", inputforMovies.getName());
                                 }
                                 notification.add(message);
                                 currentUser.set("notifications", notification);
@@ -506,10 +494,9 @@ public class Main {
                                     if (database.size() != 0) {
                                         ArrayNode notification = objectMapper.createArrayNode();
                                         ObjectNode message = objectMapper.createObjectNode();
-                                        ObjectNode movieName = objectMapper.createObjectNode();
                                         message.put("message", "ADD");
-                                        for (int l = 0; l < database.size(); l++) {
-                                            message.put("movieName", database.get(l).getName());
+                                        for (InputforMovies inputforMovies : database) {
+                                            message.put("movieName", inputforMovies.getName());
                                         }
                                         notification.add(message);
                                         currentUser.set("notifications", notification);
@@ -594,7 +581,6 @@ public class Main {
                                             curruser.getToken());
                                     currentUser.put("numFreePremiumMovies",
                                             curruser.getNumFreeMovies());
-                                    ArrayNode arrayNode1 = objectMapper.createArrayNode();
                                     ArrayNode liked1 = objectMapper.createArrayNode();
                                     if (liked != null) {
                                         for (InputforMovies inputforMovies : liked) {
@@ -725,29 +711,29 @@ public class Main {
                                         curruser.getNumFreeMovies());
                                 ArrayNode arrayNode1 = objectMapper.createArrayNode();
                                 ArrayNode purch = objectMapper.createArrayNode();
-                                ArrayList<InputforMovies> userpurch = new ArrayList<>();
+                                ArrayList<InputforMovies> userpurch;
                                 userpurch = curruser.getPutinpurchasedmovies();
                                 if (userpurch != null) {
-                                    for (int t = 0; t < userpurch.size(); t++) {
+                                    for (InputforMovies inputforMovies : userpurch) {
                                         ObjectNode spec;
-                                        spec = print.printSpecificationsForMovie(userpurch.get(t));
+                                        spec = print.printSpecificationsForMovie(inputforMovies);
                                         purch.add(spec);
                                     }
                                 }
                                 currentUser.set("purchasedMovies", purch);
                                 ArrayNode wat = objectMapper.createArrayNode();
-                                ArrayList<InputforMovies> userwat = new ArrayList<>();
+                                ArrayList<InputforMovies> userwat;
                                 userwat = curruser.getPutinwatchedmovies();
                                 if (userwat != null) {
-                                    for (int t = 0; t < userwat.size(); t++) {
-                                        ObjectNode spec = objectMapper.createObjectNode();
-                                        spec = print.printSpecificationsForMovie(userwat.get(t));
+                                    for (InputforMovies inputforMovies : userwat) {
+                                        ObjectNode spec;
+                                        spec = print.printSpecificationsForMovie(inputforMovies);
                                         wat.add(spec);
                                     }
                                 }
                                 currentUser.set("watchedMovies", wat);
                                 ArrayNode lik = objectMapper.createArrayNode();
-                                ArrayList<InputforMovies> userlik = new ArrayList<>();
+                                ArrayList<InputforMovies> userlik;
                                 userlik = curruser.getLikedmovies();
                                 if (userlik != null) {
                                     for (int t = userlik.size() - 1; t >= 0; t--) {
@@ -759,12 +745,12 @@ public class Main {
                                 currentUser.set("likedMovies", arrayNode1);
                                 currentUser.set("notifications", arrayNode1);
                                 ArrayNode rat = objectMapper.createArrayNode();
-                                ArrayList<InputforMovies> userrat = new ArrayList<>();
+                                ArrayList<InputforMovies> userrat;
                                 userrat = curruser.getPutinratedmovies();
                                 if (userrat != null) {
-                                    for (int t = 0; t < userrat.size(); t++) {
+                                    for (InputforMovies inputforMovies : userrat) {
                                         ObjectNode spec;
-                                        spec = print.printSpecificationsForMovie(userrat.get(t));
+                                        spec = print.printSpecificationsForMovie(inputforMovies);
                                         rat.add(spec);
                                     }
                                 }
@@ -1409,7 +1395,7 @@ public class Main {
                                             ObjectNode spec;
                                             purchased.add(legalmovie);
                                             allpurchased.add(legalmovie);
-                                            currentmovieslist.add(legalmovie);
+                                            //currentmovieslist.add(legalmovie);
                                             curruser.putinpurchasedmovies(legalmovie);
                                             spec = print.
                                                     printSpecificationsForMovie(legalmovie);
@@ -1432,7 +1418,7 @@ public class Main {
                                             ObjectNode spec;
                                             purchased.add(legalmovie);
                                             allpurchased.add(legalmovie);
-                                            currentmovieslist.add(legalmovie);
+                                            //currentmovieslist.add(legalmovie);
                                             spec = print.
                                                     printSpecificationsForMovie(legalmovie);
                                             purchasedmovies.add(spec);
@@ -1541,7 +1527,6 @@ public class Main {
                                 currentUser.put("tokensCount", curruser.getToken());
                                 currentUser.put("numFreePremiumMovies",
                                         curruser.getNumFreeMovies());
-                                ArrayNode arrayNode1 = objectMapper.createArrayNode();
                                 for (InputforMovies legalmovie : legalmovies) {
                                     int waswatched = 0;
                                     if (actions.get(i).getMovie() == null) {
@@ -1793,7 +1778,6 @@ public class Main {
                                         } else {
                                             newrate = newrate - oldrate;
                                             newrate += r;
-                                            avg = newrate / numrate;
                                         }
                                         avg = newrate / numrate;
                                         if (avg > limit) {
@@ -1858,7 +1842,6 @@ public class Main {
                                             numrate++;
                                             rating = actions.get(i).getRate();
                                             newrate += rating;
-                                            avg = newrate / numrate;
                                             if (curruser.getNumlogins() == 1) {
                                                 rated.add(inputforMovies);
                                                 curruser.putinratedmovies(inputforMovies);
@@ -1971,7 +1954,6 @@ public class Main {
             } else if (database.size() != 0) {
                 ObjectNode note = objectMapper.createObjectNode();
                 ObjectNode note1 = objectMapper.createObjectNode();
-                ArrayNode wrap = objectMapper.createArrayNode();
                 note.put("message", "ADD");
                 ArrayList<String> databasenames = new ArrayList<>();
                 for (int u = 0; u < database.size(); u++) {
