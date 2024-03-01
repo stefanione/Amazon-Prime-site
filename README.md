@@ -1,5 +1,5 @@
-# etapa2proiectPOO
-etapa2 proiect POO
+# Amazon Prime Site
+Amazon Prime Site
 
 321CD- Ionescu Stefan
 
