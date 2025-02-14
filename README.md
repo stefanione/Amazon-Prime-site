@@ -1,112 +1,54 @@
 # Amazon Prime Site
 Amazon Prime Site
 
-321CD- Ionescu Stefan
+321CD - Ionescu Stefan
 
-							README ETAPA II
-
-
-Descrierea claselor auxiliare :
-Clasa Print- aceasta clasa contine 2 metode, una dintre ele printeaza credentialele
-userului curent(nume, tara, tipul de cont, parola, bani in cont), iar cealalta 
-printeaza caracteristicile filmelor(anul aparitiei, numele, durata, genurile filmului, 
-actorii care participa, tarile in care este interzis, rating-ul, numarul de aprecieri,
-numarul de rating-uri ale filmului).
+								README AMAZON PRIME SITE
 
 
-Clasa Legal - contine o metoda care verifica legalitatea filmelor primite ca input in 
-functie si de userul curent, functioneaza prin a lua tarile in care filmele sunt 
-interzise si a le verifica daca, corespund cu tara userului curent.
+Auxiliary Classes Description:
+Print Class:
+This class contains two methods. One of the methods prints the credentials of the current user (name, country, account type, password, and account balance), while the other method prints the movie characteristics (release year, title, duration, genres, actors, countries where the movie is banned, rating, number of reviews, and number of ratings).
 
+Legal Class:
+This class contains a method that checks the legality of movies based on the current user's country. It works by taking the list of countries where the movie is banned and verifying if any of those countries match the user’s country.
 
-Clasele GoingThroughLikedMovies, GoingThroughPurchasedMovies, GoingThroughWatchedMovies,
-GoingThroughRatedMovies - fiecare dintre aceasta clasa impartaseste acelasi principiu: 
-navigheaza prin un arraylist primit ca parametru de intrare al metodei, numele au fost 
-alese in mod specific pentru a ma putea orienta mai usor printre filmele cumparate, 
-vizionate, apreciate si filmele care au primit rating. Metodele din interiorul claselor
-contin si o variabila de tipul Print(explicata mai sus), care printeaza specificatiile
-filmelor si returneaza un objectnode.
+Classes for Navigating Lists of Movies:
 
+ - GoingThroughLikedMovies, GoingThroughPurchasedMovies, GoingThroughWatchedMovies, GoingThroughRatedMovies:
+   Each of these classes follows the same principle: they navigate through an ArrayList passed as a parameter to the method. The class names were chosen to help organize the movies by category—liked, 
+   purchased, watched, and rated. The methods inside these classes include a Print object (explained above), which prints the movie specifications and returns an ObjectNode.
 
-Clasele SortForFilterIncreasingIncreasing, SortingForFilterDecreasingDecreasing. 
-SortForFilterIncreasingDecreasing, SortForFilterDecreasingIncreasing - fiecare dintre
-aceste clase contine 2 metode : una dintre ele printeaza felul in care arraylist-ul
-a fost sortat in functie de Duration si Rating, iar cealalta foloseste Bubble-Sort
-ca sa sorteze arraylsit-ul primit ca parametru la intrare in functie de Rating si 
-Duration, conform cerintei de la etapa 1. Deasemenea, tind sa mentionez faptul ca
-aceste doua metode sunt folosite pentru doua design patterns : Command si Strategy
-metoda care printeaza felul in care arraylist-ul a fost sortat este pentru design
-pattern-ul Command iar, cealalta metoda care efectiv sorteaza arraylist-ul este 
-pentru design pattern-ul Strategy. Pentru aceste doua design pattern-uri am creat
-cate 4 interfete: pentru design pattern-ul Strategy am creat interfetele : 
-SortForFilterDecreasingDecreasing, SortingForFilterDecreasingIncreasing, 
-SortingForFilterIncreasingDecreasing, SortingForFilterIncreasingIncreasing.
-Fiecare contine cate un antet de metoda care primeste ca paramtru de intrare un
-arraylist si este de tipul void. In mod asemanator pentru design pattern-ul Command
-am creat alte 4 interfete : InterfaceForfilterDecreasingDecreasing,
-InterfaceForfilterDecreasingIncreasing, InterfaceForfilterIncreasingDecreasing,
-InterfaceForfilterIncreasingIncreasing. In mod asemanator ca la Strategy, fiecare
-dintrea ceste interfete contone un antet de metoda de data aceasta fara parametrii
-de intrare si este de tipul void. Inca un lucru de mentionat la aceste clase de
-sortare: in primul rand sunt pentru actiunea filter si sunt apelate in functie de 
-cazul de sortare de la input. Deasemenea am folosit si edsign pattern-ul Singleton
-pentru userul curent : in clasa Inputforusers gasim metoda getInstance care 
-functioneaza conform design pattern-ului Singleton.
+Sorting Classes:
 
+ - SortForFilterIncreasingIncreasing, SortingForFilterDecreasingDecreasing, SortForFilterIncreasingDecreasing, SortForFilterDecreasingIncreasing:
+   Each of these classes contains two methods: one prints how the ArrayList was sorted based on Duration and Rating, and the other uses Bubble Sort to sort the ArrayList according to Rating and Duration.
+   It’s important to note that these two methods employ two design patterns: Command and Strategy. The method that prints how the ArrayList was sorted follows the Command pattern, while the method that 
+   actually sorts the ArrayList adheres to the Strategy pattern.
+   For these two design patterns, I created four interfaces for each:
+ - For the Strategy pattern, the interfaces are: SortForFilterDecreasingDecreasing, SortingForFilterDecreasingIncreasing, SortingForFilterIncreasingDecreasing, SortingForFilterIncreasingIncreasing, each 
+   with a method header that accepts an ArrayList as input and returns void.
+ - For the Command pattern, I created four additional interfaces: InterfaceForfilterDecreasingDecreasing, InterfaceForfilterDecreasingIncreasing, InterfaceForfilterIncreasingDecreasing, 
+   InterfaceForfilterIncreasingIncreasing, each with a method header, but without input parameters and returning void.
+These sorting classes are invoked for the filter action and are called based on the sorting case provided by the input. Additionally, the Singleton design pattern is used for the current user in the Inputforusers class, where the getInstance method implements the Singleton pattern.
 
-Clasele de input, inclusiv clasa Filters : clasele de input sunt facute conform
-cerintei etapei 1 de pe ocw, doar ca la aceasta etapa am mai adaugat niste
-metode in plus clasei Inputforusers, anume : pentru fiecare user am decis sa
-adaug o metoda in care se pune in cate un arraylist separat filmele achizitionate,
-filmele vizionate, filmele apreciate si filmele la care a dat rate. Deasemenea gasim
-si de cate ori un user s-a logat prin intermediul variabilei numlogins.
+Input Classes and Filters:
+The input classes follow the specifications provided for the project, but additional methods were added to the Inputforusers class for this stage. Specifically, for each user, I included a method to store movies in separate ArrayLists for purchased, watched, liked, and rated movies. Additionally, the numlogins variable tracks the number of times a user logs in.
 
+Main Class:
+In the login and register actions, the process is similar: for login, the username and password are checked against the existing users, and for registration, the new user is added if they don't already exist. For the filter command, the legality of movies is checked based on the user's country before sorting them as requested.
+For the buytokens command, the current user's balance is decreased to purchase tokens, and for buypremiumaccount, tokens are deducted to purchase a premium account. These actions modify values and account type, but no output is displayed.
+In contrast, during the login and register actions, all of the user’s movies and credentials are displayed.
+For commands like purchase, rate, watch, like, I display the user’s credentials and movies, considering the order of these actions: purchase should be first, followed by watch, like, and rate.
 
-Clasa Main - La actiunile de login si register, procesul este intr-un fel asemanator
-pentru login caut sa vad daca numele userului si parola acestuia coinicide cu numele
-si parola unuia dintre userii primiti la input. La register adaug userul cu numele 
-si parola in lista de useri, in caz contrar, userul exista deja. Pentru comanda 
-filter verific daca filmele primite de la input sunt legale si abia dupa le fac 
-sortarea in functie de cum s-a cerut in inputul actiunii. La comanda buytokens 
-scad din banii userului curent pentru a cumpara niste token-uri. Pentru comanda 
-buypremiumaccount scad din numarul de tokens ai user-ului curent pentru a 
-cumpara un cont de tipul premium. La aceste doua actiuni nu afisez nimic,
-insa setez valorile si tipul contului. La actiunile de login si register pe 
-de alta parte afisez absolut toate filmele userului cat si credentialele 
-acestuia. La actiunile de purchase, rate, watch, like, afisez userul cu 
-credentialele sale, dar si filmele tiannd cont de faptul ca este o ordine intre 
-aceste comenzi : purchase trebuie sa fie prima, watch a doua, like a treia si rate 
-a patra. Tinand cont de acest lucru, la purchase afisez primordial purchasedmovies 
-si vreau sa includ si filmele noi cumparate, iar la celelalte tipuri de filme le 
-afisez daca pentru userul curent exista. La watch asemanator ca la purchase, tin 
-cont sa afisez atat filmele noi cat si vechi vizionate dar la purchase am o conditie 
-ca un film sa nu fie achizionat de mai multe ori. Afisez filmele achizitionate(toate) 
-ale userului, cat si cele vizionate ale userului(toate) si daca mai are alte tipuri de 
-filme precum apreciate sau la care a dat rate, le afisez si pe ele, dar daca nu, nu le 
-mai afisez. La rate ca la watch, afisez toate filmele achizitionate, vizionate, cat si 
-cele la care a dat rate, pe langa caractersiticile user-ului. In cele din urma la like 
-este acelasi rationament ca la rate, purchase, watch. Pentru actiunea see details, in 
-general se afiseaza la sectunea CurrentMoviesList filmul dat de input. La etapa 1 
-printre primele 6 teste, acest film era dat de la input, atat la rate, cat si la 
-purchase si like, dar pentru cazul in care nu se dadea de la input, retineam nummele 
-filmului intr-un String si lucram cu el la comenzile de see details. Pentru actiunea 
-back, retin pagina precedenta si afisez ce afisam pe ea in mod normal previous page este 
-actualizat dupa fiecare actiune, iar in caz ca nu se afla pe pagina care trebuie
-am o variabila fail de tip int, o initializez cu 1 si verifica in caz ed este egal cu 1 
-si daca da afisez o eroare. La database, adaug filmul oferit de input daca este film de 
-adaugat si sterg filmul oferit de input daca este film de sters la input. La subscribe iau 
-genul la care sa dea subscribe din input si il adaug la currentuser, la arraylist-ul cu 
-genurile la care sa dea subscribe. La notifications, daca am un film in database ii pun
-numele la recommendation si la message, pun ADD. Daca nu am nimic in database, pun 
-No Recommendation. Notification este dupa for-ul de comenzi, deci la sfarsitul comenzilor
-afisez aceste lucruri, dar cu conditia ca si contul ultimului utilizator sa fie de tipul
-premium. 
-
-Tind sa mentionez faptul ca in unele clase am mai lasat warning-uri doar pentru ca
-daca le modificau imi stricau checkstyle si pe de alta parte aveam nevoie de niste
-variabile necesare pentru input. Si mi se sugera sa le sterg.
-
-
-
-
-
+ - For purchase, all purchased movies are displayed, including newly purchased ones.
+ - For watch, the user’s purchased and watched movies are displayed, ensuring that a movie is not purchased more than once.
+ - For rate, all purchased, watched, and rated movies are shown, along with the user’s credentials.
+ - Similarly, for like, all movies from the other categories are displayed.
+   For the see details action, the movie given in the input is shown in the CurrentMoviesList section. If no movie is provided, the movie name is stored in a String and used for the see details command.
+   The back action retains the previous page and displays its contents. If the user is not on the correct page, an error is shown using a fail variable set to 1.
+   In the database, the movie is added or removed based on the input, depending on whether it is a movie to be added or deleted.
+   For the subscribe action, the genre to subscribe to is obtained from the input and added to the current user’s list of subscribed genres.
+   In the notifications action, if a movie is present in the database, its name is added to the recommendation with the message "ADD"; otherwise, the message is "No Recommendation." Notifications are 
+   displayed at the end of the command sequence, but only if the current user's account is premium.
+Note: In some classes, warnings were left in place to avoid breaking the checkstyle or because certain variables were necessary for input handling. I was advised to leave them as they were.
